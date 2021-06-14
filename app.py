@@ -15,6 +15,7 @@ app = dash.Dash(
         "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     ],
 )
+server = app.server
 
 app.layout = html.Div(
     className="main-page",
