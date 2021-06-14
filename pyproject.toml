@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "live-3d-rendering"
+version = "0.1.0"
+description = "Visualize 2D images in 3D"
+authors = ["Thomas Breydo <tbreydo@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10"
+ipyvolume = "^0.5.2"
+scipy = "^1.6.3"
+matplotlib = "^3.4.2"
+plotly = "^4.14.3"
+dash = "^1.20.0"
+pandas = "^1.2.4"
+numpy = "^1.20.3"
+pip = "^21.1.2"
+install = "^1.3.4"
+jupyter-contrib-nbextensions = "^0.5.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
