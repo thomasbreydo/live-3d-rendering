@@ -2,7 +2,7 @@ import numpy as np
 import plotly.graph_objects as go
 
 
-def render(image, colorscale=None, width=500, height=500, *args, **kwargs):
+def render(image, width, height, colorscale=None, *args, **kwargs):
     """Create a surface figure from a 2D image through linear interpolation.
 
     Args:
@@ -39,6 +39,7 @@ def render(image, colorscale=None, width=500, height=500, *args, **kwargs):
             yaxis=dict(title="", showticklabels=False),
             zaxis=dict(title="", showticklabels=False),
         ),
+        margin=dict(r=0, l=0, t=0, b=0),
         *args,
         **kwargs,
     )
@@ -46,7 +47,7 @@ def render(image, colorscale=None, width=500, height=500, *args, **kwargs):
     return fig
 
 
-def display(image, colorscale=None, width=500, height=500, *args, **kwargs):
+def display(image, width, height, colorscale=None, *args, **kwargs):
     """Display the 2D image in an interactive 3D plot.
 
     Args:
@@ -55,5 +56,5 @@ def display(image, colorscale=None, width=500, height=500, *args, **kwargs):
         height: height of 3D plot
         image (numpy.ndarray | PIL.Image): image to display
     """
-    fig = render(image, colorscale, width, height, *args, **kwargs)
+    fig = render(image, width, height, colorscale, *args, **kwargs)
     fig.show()

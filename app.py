@@ -16,16 +16,17 @@ app = dash.Dash(
     ],
 )
 server = app.server
+app.title = "Image2Surface"
 
 app.layout = html.Div(
     className="main-page",
     children=[
-        html.H2("Interpolating images"),
+        html.H2("Image2Surface"),
         dcc.Upload(
             id="upload-data",
             children=html.Div(["Drag and Drop or ", html.A("Upload Image")]),
             style={
-                "width": "50%",
+                "width": "100%",
                 "height": "60px",
                 "lineHeight": "60px",
                 "borderWidth": "1px",
@@ -46,12 +47,22 @@ app.layout = html.Div(
                     max="9",
                     step="1",
                     type="range",
-                    style={"width": "50%"},
+                    style={"width": "100%"},
                 ),
             ]
         ),
-        html.Div(id="output-data-upload"),
-        html.Footer("© 2021 Thomas Breydo"),
+        html.Div(
+            id="output-data-upload",
+            style={
+                "padding": "20px 0px",
+            },
+            children=html.Em("Loading..."),
+        ),
+        html.Footer(
+            "© 2021 Thomas Breydo",
+            style={"padding-top": "30px"},
+            className="text-muted",
+        ),
     ],
 )
 
@@ -71,8 +82,8 @@ def render_plot(blur_radius, contents, filename, date):
             return html.Div(["There was an error processing your image."])
     fig = l3d.render(
         l3d.preprocess(image).filter(ImageFilter.GaussianBlur(blur_radius)),
-        width=800,
-        height=600,
+        width=850,
+        height=550,
     )
     return dcc.Graph(id="3d-plot", figure=fig)
 
