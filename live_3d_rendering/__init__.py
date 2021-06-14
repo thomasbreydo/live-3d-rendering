@@ -1,2 +1,2 @@
-from .display import display
+from .render import render, display
 from .preprocess import preprocess
