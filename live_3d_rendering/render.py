@@ -40,6 +40,7 @@ def render(image, width, height, colorscale=None, *args, **kwargs):
             zaxis=dict(title="", showticklabels=False),
         ),
         margin=dict(r=0, l=0, t=0, b=0),
+        uirevision="constant",
         *args,
         **kwargs,
     )
