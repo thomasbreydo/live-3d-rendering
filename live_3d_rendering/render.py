@@ -1,15 +1,17 @@
 import numpy as np
 import plotly.graph_objects as go
 
+from .local_stats import build_hover_data
+
 
 def render(image, width, height, colorscale=None, *args, **kwargs):
     """Create a surface figure from a 2D image through linear interpolation.
 
     Args:
-        colorscale: colorscale for plot
+        image (numpy.ndarray | PIL.Image): image to display
         width: width of 3D plot
         height: height of 3D plot
-        image (numpy.ndarray | PIL.Image): image to display
+        colorscale: colorscale for plot
 
     Returns:
         The surface figure object.
@@ -24,7 +26,12 @@ def render(image, width, height, colorscale=None, *args, **kwargs):
                 z=ar,
                 colorscale=colorscale,
                 showscale=False,
-                hoverinfo=None,
+                customdata=build_hover_data(ar),
+                hovertemplate="<em>Local stats</em>"
+                "<br>min: %{customdata[0]}"
+                "<br>max: %{customdata[1]}"
+                "<br>mean: %{customdata[2]:.2f}"
+                "<br>variance: %{customdata[3]:.2f}<extra></extra>",
             )
         ]
     )
@@ -32,7 +39,7 @@ def render(image, width, height, colorscale=None, *args, **kwargs):
         autosize=True,
         width=width,
         height=height,
-        hovermode=False,
+        hovermode="closest",
         showlegend=False,
         scene=dict(
             xaxis=dict(title="", showticklabels=False),
