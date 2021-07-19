@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 from .local_stats import build_hover_data
 
 
-def render(image, width, height, colorscale=None, *args, **kwargs):
+def render(image, width, height, colorscale=None, rx=None, ry=None, *args, **kwargs):
     """Create a surface figure from a 2D image through linear interpolation.
 
     Args:
@@ -12,6 +12,10 @@ def render(image, width, height, colorscale=None, *args, **kwargs):
         width: width of 3D plot
         height: height of 3D plot
         colorscale: colorscale for plot
+        rx: distance from center to leftmost pixel in window for local
+            stats (default 2)
+        ry: distance from center to bottommost pixel in window for
+            local stats (default 2)
 
     Returns:
         The surface figure object.
@@ -26,7 +30,7 @@ def render(image, width, height, colorscale=None, *args, **kwargs):
                 z=ar,
                 colorscale=colorscale,
                 showscale=False,
-                customdata=build_hover_data(ar),
+                customdata=build_hover_data(ar, rx=rx, ry=ry),
                 hovertemplate="<em>Local stats</em>"
                 "<br>min: %{customdata[0]}"
                 "<br>max: %{customdata[1]}"
