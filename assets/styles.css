@@ -9,7 +9,7 @@ a:hover {
 
 #surface-plot {
     border: 1px solid;
-    height: 700px;
+    min-height: 700px;
 }
 
 #local-stats-list {
