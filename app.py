@@ -28,6 +28,20 @@ MODE_BAR_BUTTONS_TO_REMOVE = [
 RX = 25
 RY = 25
 
+
+def format_local_stats(local_stats):
+    return html.Ul(
+        id="local-stats-list",
+        className="mt-3",
+        children=[
+            html.Li(f"Min: {local_stats[0]}"),
+            html.Li(f"Max: {local_stats[1]}"),
+            html.Li(f"Mean: {local_stats[2]:.2f}"),
+            html.Li(f"Variance: {local_stats[3]:.2f}"),
+        ],
+    )
+
+
 app = Dash(
     __name__,
     external_stylesheets=[
@@ -107,6 +121,9 @@ app.layout = html.Div(
                                                 ),
                                                 html.Div(
                                                     id="local-stats-inner",
+                                                    children=format_local_stats(
+                                                        [0] * len(STATS_FUNCTIONS)
+                                                    ),
                                                 ),
                                             ],
                                         ),
@@ -194,19 +211,6 @@ def on_click(click_data, fig):
         ry=RY,
     )
     return format_local_stats(local_stats)
-
-
-def format_local_stats(local_stats):
-    return html.Ul(
-        id="local-stats-list",
-        className="mt-3",
-        children=[
-            html.Li(f"Min: {local_stats[0]}"),
-            html.Li(f"Max: {local_stats[1]}"),
-            html.Li(f"Mean: {local_stats[2]:.2f}"),
-            html.Li(f"Variance: {local_stats[3]:.2f}"),
-        ],
-    )
 
 
 if __name__ == "__main__":
