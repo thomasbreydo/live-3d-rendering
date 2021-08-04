@@ -40,12 +40,13 @@ def render(
         scene=dict(
             xaxis=dict(title="x", showticklabels=False),
             yaxis=dict(title="y", showticklabels=False),
-            zaxis=dict(title="z", showticklabels=False),
+            zaxis=dict(title="", showticklabels=False),
         ),
         margin=dict(r=0, l=0, t=0, b=0),
         uirevision=True,
         width=width,
         height=height,
     )
-    fig.update_layout(layout)
+    camera = dict(eye=dict(x=0.0, y=0.0, z=2.5), up=dict(x=0, y=1, z=0))
+    fig.update_layout(layout, scene_camera=camera)
     return fig
