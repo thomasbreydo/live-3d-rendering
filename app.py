@@ -32,7 +32,7 @@ RY = 25
 def format_local_stats(local_stats):
     return html.Ul(
         id="local-stats-list",
-        className="mt-3",
+        className="mt-3 mb-0",
         children=[
             html.Li(f"Min: {local_stats[0]}"),
             html.Li(f"Max: {local_stats[1]}"),
@@ -132,7 +132,7 @@ app.layout = html.Div(
                             ],
                         ),
                         html.Div(
-                            className="col-lg-9 mt-2 mt-lg-0",
+                            className="col-lg-9 mt-4 mt-lg-0",
                             children=[
                                 dcc.Loading(
                                     id="figure-loading",
