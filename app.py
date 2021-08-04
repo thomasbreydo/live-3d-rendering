@@ -94,7 +94,7 @@ app.layout = html.Div(
                                                 html.B("Smoothing"),
                                                 html.Div(
                                                     html.Em(
-                                                        "Control how much sharp points are smoothed out.",
+                                                        "Control how much sharp edges are smoothed out.",
                                                     ),
                                                     className="text-muted",
                                                 ),
