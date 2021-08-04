@@ -1,8 +1,17 @@
-.main-page {
-        margin: 30px auto;
-        width: 850px;
-}
-
 a:hover {
     cursor: pointer;
+}
+
+#side-panel {
+    padding: 1em;
+    border: 1px solid;
+}
+
+#surface-plot {
+    border: 1px solid;
+    height: 700px;
+}
+
+#local-stats-list {
+    white-space: pre-wrap;
 }
