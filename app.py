@@ -64,20 +64,34 @@ app.layout = html.Div(
                         html.Div(
                             className="col-lg-3",
                             children=[
-                                html.H2(
-                                    className="text-center text-h2",
-                                    children=[app.title],
-                                ),
                                 html.Div(
                                     id="side-panel",
                                     children=[
+                                        html.H3(
+                                            children=app.title,
+                                        ),
+                                        html.Hr(),
                                         html.Div(
-                                            className="pb-2",
+                                            children=[
+                                                html.B("Camera controls"),
+                                                html.Br(),
+                                                html.Ol(
+                                                    className="mb-0",
+                                                    children=[
+                                                        html.Li("Left-click to rotate"),
+                                                        html.Li("Right-click to pan"),
+                                                        html.Li("Scroll to zoom"),
+                                                    ],
+                                                ),
+                                            ],
+                                        ),
+                                        html.Hr(),
+                                        html.Div(
                                             children=[
                                                 html.B("Image upload"),
                                                 html.Br(),
                                                 html.Div(
-                                                    html.Em(
+                                                    html.Small(
                                                         "Select an image from your computer.",
                                                     ),
                                                     className="text-muted",
@@ -90,11 +104,15 @@ app.layout = html.Div(
                                                     ),
                                                     multiple=False,
                                                 ),
-                                                html.Hr(),
+                                            ]
+                                        ),
+                                        html.Hr(),
+                                        html.Div(
+                                            children=[
                                                 html.B("Smoothing"),
                                                 html.Div(
-                                                    html.Em(
-                                                        "Control how much sharp edges are smoothed out.",
+                                                    html.Small(
+                                                        "Control how much sharp edges are smoothed out."
                                                     ),
                                                     className="text-muted",
                                                 ),
@@ -107,17 +125,17 @@ app.layout = html.Div(
                                                     type="range",
                                                     className="w-100 mt-3",
                                                 ),
-                                                html.Hr(),
                                             ],
                                         ),
+                                        html.Hr(),
                                         html.Div(
                                             children=[
                                                 html.B("Local stats"),
                                                 html.Div(
-                                                    html.Em(
+                                                    html.Small(
                                                         "Click on a point to see local stats.",
-                                                        className="text-muted",
                                                     ),
+                                                    className="text-muted",
                                                 ),
                                                 html.Div(
                                                     id="local-stats-inner",

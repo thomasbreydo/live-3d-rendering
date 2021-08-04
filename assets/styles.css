@@ -2,11 +2,6 @@ a:hover {
     cursor: pointer;
 }
 
-#side-panel {
-    padding: 1em;
-    border: 1px solid;
-}
-
 #surface-plot {
     border: 1px solid;
     min-height: 700px;
