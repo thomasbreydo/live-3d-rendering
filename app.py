@@ -158,7 +158,7 @@ app.layout = html.Div(
                                                     html.Small(
                                                         [
                                                             "Click on a point to see min/max/etc. among points whose"
-                                                            "coordinates are both within ",
+                                                            " coordinates are both within ",
                                                             dcc.Input(
                                                                 id="r-input",
                                                                 value=f"{DEFAULT_R}",
