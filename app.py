@@ -16,6 +16,7 @@ from live_3d_rendering.stats_functions import (
 )
 
 STATS_FUNCTIONS = [local_min, local_max, local_mean, local_variance]
+HOME_ICON = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MjguNiAxMDAwIiBjbGFzcz0iaWNvbiIgaGVpZ2h0PSIxZW0iIHdpZHRoPSIxZW0iPjxwYXRoIGQ9Im03ODYgMjk2di0yNjdxMC0xNS0xMS0yNnQtMjUtMTBoLTIxNHYyMTRoLTE0M3YtMjE0aC0yMTRxLTE1IDAtMjUgMTB0LTExIDI2djI2N3EwIDEgMCAydDAgMmwzMjEgMjY0IDMyMS0yNjRxMS0xIDEtNHogbTEyNCAzOWwtMzQtNDFxLTUtNS0xMi02aC0ycS03IDAtMTIgM2wtMzg2IDMyMi0zODYtMzIycS03LTQtMTMtNC03IDItMTIgN2wtMzUgNDFxLTQgNS0zIDEzdDYgMTJsNDAxIDMzNHExOCAxNSA0MiAxNXQ0My0xNWwxMzYtMTE0djEwOXEwIDggNSAxM3QxMyA1aDEwN3E4IDAgMTMtNXQ1LTEzdi0yMjdsMTIyLTEwMnE1LTUgNi0xMnQtNC0xM3oiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC0xIDAgODUwKSIvPjwvc3ZnPg=="  # noqa line too long
 MODE_BAR_BUTTONS_TO_REMOVE = [
     "zoom3d",
     "pan3d",
@@ -78,9 +79,30 @@ app.layout = html.Div(
                                                 html.Ol(
                                                     className="mb-0",
                                                     children=[
-                                                        html.Li("Left-click to rotate"),
-                                                        html.Li("Right-click to pan"),
+                                                        html.Li(
+                                                            "Left-click and drag to rotate"
+                                                        ),
+                                                        html.Li(
+                                                            "Right-click and drag to pan"
+                                                        ),
                                                         html.Li("Scroll to zoom"),
+                                                        html.Li(
+                                                            html.Div(
+                                                                children=[
+                                                                    html.Span(
+                                                                        "Click the ",
+                                                                        className="align-text-middle",
+                                                                    ),
+                                                                    html.Img(
+                                                                        src=HOME_ICON
+                                                                    ),
+                                                                    html.Span(
+                                                                        " icon to reset the camera",
+                                                                        className="align-text-middle",
+                                                                    ),
+                                                                ],
+                                                            )
+                                                        ),
                                                     ],
                                                 ),
                                             ],
@@ -196,7 +218,10 @@ def render_plot(blur_radius, contents, filename, date):
     return dcc.Graph(
         id="surface-plot",
         figure=fig,
-        config=dict(modeBarButtonsToRemove=MODE_BAR_BUTTONS_TO_REMOVE),
+        config=dict(
+            modeBarButtonsToRemove=MODE_BAR_BUTTONS_TO_REMOVE,
+            displayModeBar=True,
+        ),
     )
 
 
