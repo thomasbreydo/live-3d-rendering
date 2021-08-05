@@ -10,3 +10,7 @@ a:hover {
 #local-stats-list {
     white-space: pre-wrap;
 }
+
+input {
+    color: #6C757D !important;
+}

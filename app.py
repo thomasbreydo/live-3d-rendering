@@ -27,8 +27,7 @@ MODE_BAR_BUTTONS_TO_REMOVE = [
     "hoverClosest3d",
     "toImage",
 ]
-RX = 25
-RY = 25
+DEFAULT_R = 25
 
 
 def format_local_stats(local_stats):
@@ -157,7 +156,19 @@ app.layout = html.Div(
                                                 html.B("Local stats"),
                                                 html.Div(
                                                     html.Small(
-                                                        "Click on a point to see local stats.",
+                                                        [
+                                                            "Click on a point to see min/max/etc. among points whose"
+                                                            "coordinates are both within ",
+                                                            dcc.Input(
+                                                                id="r-input",
+                                                                value=f"{DEFAULT_R}",
+                                                                min="1",
+                                                                max="999",
+                                                                step="1",
+                                                                type="number",
+                                                            ),
+                                                            " of the clicked point.",
+                                                        ]
                                                     ),
                                                     className="text-muted",
                                                 ),
@@ -243,18 +254,20 @@ def update_plot(blur, uploaded, fname, last_modified):
     Output("local-stats-inner", "children"),
     Input("surface-plot", "clickData"),
     State("surface-plot", "figure"),
+    State("r-input", "value"),
 )
-def on_click(click_data, fig):
+def on_click(click_data, fig, r):
     if click_data is None:
         raise PreventUpdate
     clicked = click_data["points"][0]
+    rx = ry = int(r)
     local_stats = get_local_stats(
         fig["data"][0]["z"],
         stats_functions=STATS_FUNCTIONS,
         pixel_row=clicked["y"],
         pixel_col=clicked["x"],
-        rx=RX,
-        ry=RY,
+        rx=rx,
+        ry=ry,
     )
     return format_local_stats(local_stats)
 
