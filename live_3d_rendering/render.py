@@ -31,6 +31,7 @@ def render(
                 z=ar,
                 colorscale=colorscale,
                 showscale=False,
+                hovertemplate="(x=%{x}, y=%{y})<extra></extra>",
             )
         ]
     )
