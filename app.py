@@ -92,14 +92,15 @@ app.layout = html.Div(
                                                                 children=[
                                                                     html.Span(
                                                                         "Click the ",
-                                                                        className="align-text-middle",
+                                                                        className="align-middle",
                                                                     ),
                                                                     html.Img(
-                                                                        src=HOME_ICON
+                                                                        src=HOME_ICON,
+                                                                        className="align-middle",
                                                                     ),
                                                                     html.Span(
                                                                         " icon to reset the camera",
-                                                                        className="align-text-middle",
+                                                                        className="align-middle",
                                                                     ),
                                                                 ],
                                                             )
