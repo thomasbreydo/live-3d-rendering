@@ -25,6 +25,7 @@ MODE_BAR_BUTTONS_TO_REMOVE = [
     "handleDrag3d",
     "resetCameraLastSave3d",
     "hoverClosest3d",
+    "toImage",
 ]
 RX = 25
 RY = 25
@@ -221,6 +222,7 @@ def render_plot(blur_radius, contents, filename, date):
         config=dict(
             modeBarButtonsToRemove=MODE_BAR_BUTTONS_TO_REMOVE,
             displayModeBar=True,
+            displaylogo=False,
         ),
     )
 

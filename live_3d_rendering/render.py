@@ -48,5 +48,6 @@ def render(
         height=height,
     )
     camera = dict(eye=dict(x=0.0, y=0.0, z=2.5), up=dict(x=0, y=1, z=0))
-    fig.update_layout(layout, scene_camera=camera)
+    modebar = dict(color="rgb(0, 0, 0)")
+    fig.update_layout(layout, scene_camera=camera, modebar=modebar)
     return fig
