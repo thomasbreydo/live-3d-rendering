@@ -1,8 +1,8 @@
 from typing import Union, Any, Optional
 
-from PIL.Image import Image
 import numpy as np
 import plotly.graph_objects as go
+from PIL.Image import Image
 
 
 def render(
@@ -10,7 +10,7 @@ def render(
     width: Optional[int] = None,
     height: Optional[int] = None,
     colorscale: Optional[Any] = None,
-):
+) -> go.Figure:
     """Create a surface figure from a 2D image through linear interpolation
 
     Args:
