@@ -1,12 +1,14 @@
 import base64
 import io
-from dash import Dash
+
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.exceptions import PreventUpdate
-import live_3d_rendering as l3d
 from PIL import Image, ImageFilter
+from dash import Dash
 from dash.dependencies import Input, Output, State
+from dash.exceptions import PreventUpdate
+
+import live_3d_rendering as l3d
 from live_3d_rendering.local_stats import get_local_stats
 from live_3d_rendering.stats_functions import (
     local_min,
