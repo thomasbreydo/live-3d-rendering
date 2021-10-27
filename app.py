@@ -38,6 +38,7 @@ app = Dash(
     ],
     suppress_callback_exceptions=True,
 )
+server = app.server  # needed for Dash deployment
 app.title = "Image2Surface"
 
 app.layout = html.Div(
