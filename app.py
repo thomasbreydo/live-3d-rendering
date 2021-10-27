@@ -37,10 +37,7 @@ def format_local_stats(local_stats):
         id="local-stats-list",
         className="mt-3 mb-0",
         children=[
-            html.Li(f"Min: {local_stats[0]}"),
-            html.Li(f"Max: {local_stats[1]}"),
-            html.Li(f"Mean: {local_stats[2]:.2f}"),
-            html.Li(f"Variance: {local_stats[3]:.2f}"),
+            html.Li(func.fmt % val) for func, val in zip(STATS_FUNCTIONS, local_stats)
         ],
     )
 
@@ -52,7 +49,6 @@ app = Dash(
     ],
     suppress_callback_exceptions=True,
 )
-server = app.server
 app.title = "Image2Surface"
 
 app.layout = html.Div(
