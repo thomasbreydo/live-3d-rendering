@@ -2,8 +2,9 @@ from collections import Collection
 from dataclasses import dataclass
 from typing import Union
 
-from .stats_functions import StatsFunc
 import numpy as np
+
+from .stats_functions import StatsFunc
 
 Array2D = Union[list[list[int]], np.ndarray]
 
@@ -27,10 +28,10 @@ class Window:
     height: int
 
     @staticmethod
-    def relu(n):
+    def relu(n: int) -> int:
         return max(n, 0)
 
-    def access(self):
+    def access(self) -> np.ndarray:
         return self.array[
             self.relu(self.row) : self.relu(self.row + self.height),
             self.relu(self.col) : self.relu(self.col + self.width),
