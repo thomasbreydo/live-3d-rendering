@@ -31,17 +31,6 @@ MODE_BAR_BUTTONS_TO_REMOVE = [
 ]
 DEFAULT_R = 25
 
-
-def format_local_stats(local_stats):
-    return html.Ul(
-        id="local-stats-list",
-        className="mt-3 mb-0",
-        children=[
-            html.Li(func.fmt % val) for func, val in zip(STATS_FUNCTIONS, local_stats)
-        ],
-    )
-
-
 app = Dash(
     __name__,
     external_stylesheets=[
@@ -268,6 +257,16 @@ def on_click(click_data, fig, r):
         ry=ry,
     )
     return format_local_stats(local_stats)
+
+
+def format_local_stats(local_stats):
+    return html.Ul(
+        id="local-stats-list",
+        className="mt-3 mb-0",
+        children=[
+            html.Li(func.fmt % val) for func, val in zip(STATS_FUNCTIONS, local_stats)
+        ],
+    )
 
 
 if __name__ == "__main__":
