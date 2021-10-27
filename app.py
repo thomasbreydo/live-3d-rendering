@@ -41,6 +41,18 @@ app = Dash(
 server = app.server  # needed for Dash deployment
 app.title = "Image2Surface"
 
+
+# needed up here because used in app.layout below
+def format_local_stats(local_stats):
+    return html.Ul(
+        id="local-stats-list",
+        className="mt-3 mb-0",
+        children=[
+            html.Li(func.fmt % val) for func, val in zip(STATS_FUNCTIONS, local_stats)
+        ],
+    )
+
+
 app.layout = html.Div(
     className="mt-md-4 mb-md-4 mt-3 mb-3",
     children=[
@@ -258,16 +270,6 @@ def on_click(click_data, fig, r):
         ry=ry,
     )
     return format_local_stats(local_stats)
-
-
-def format_local_stats(local_stats):
-    return html.Ul(
-        id="local-stats-list",
-        className="mt-3 mb-0",
-        children=[
-            html.Li(func.fmt % val) for func, val in zip(STATS_FUNCTIONS, local_stats)
-        ],
-    )
 
 
 if __name__ == "__main__":
