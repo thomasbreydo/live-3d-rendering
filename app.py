@@ -259,6 +259,9 @@ def update_plot(blur, uploaded, fname, last_modified):
 def on_click(click_data, fig, r):
     if click_data is None:
         raise PreventUpdate
+    import time
+
+    print(f"MYLOG ::: starting,", time.time())
     clicked = click_data["points"][0]
     rx = ry = int(r)
     local_stats = get_local_stats(
@@ -269,6 +272,7 @@ def on_click(click_data, fig, r):
         rx=rx,
         ry=ry,
     )
+    print(f"MYLOG ::: ending,", time.time())
     return format_local_stats(local_stats)
 
 
