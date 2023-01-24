@@ -1,4 +1,3 @@
-from collections import Collection
 from dataclasses import dataclass
 from typing import Union
 
@@ -37,10 +36,20 @@ class Window:
             self.relu(self.col) : self.relu(self.col + self.width),
         ]
 
+    def get_stats(self, stats_functions: list[StatsFunc]) -> list[float]:
+        """Apply each stats function to this window and return the results in order
+
+        Returns:
+            A list where entry `i` corresponds to the output of `stats_functions[i]` when
+            applied to this window.
+        """
+        local_array = self.access()
+        return [stats_func(local_array) for stats_func in stats_functions]
+
 
 def get_local_stats(
     array: Array2D,
-    stats_functions: Collection[StatsFunc],
+    stats_functions: list[StatsFunc],
     pixel_row: int,
     pixel_col: int,
     rx: int,
@@ -57,7 +66,8 @@ def get_local_stats(
         ry: # of pixels above the center pixel (height = 2ry + 1)
 
     Returns:
-        A list of local stat results.
+        A list where entry `i` corresponds to the output of `stats_functions[i]` when
+        applied to the window defined by pixel_row, pixel_col, rx, and ry.
 
     Notes:
         Say this is the 2D `array`:
@@ -77,5 +87,4 @@ def get_local_stats(
     """
     array = np.asarray(array)
     window = Window(array, pixel_row - ry, pixel_col - rx, 2 * rx + 1, 2 * ry + 1)
-    local_array = window.access()
-    return [stats_func(local_array) for stats_func in stats_functions]
+    return window.get_stats(stats_functions)
