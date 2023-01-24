@@ -20,7 +20,7 @@ def _distance_to_white(image: Image.Image, thresh: int = 180) -> float:
 
 
 def blacken_white_pixels(image: Image.Image, radius: float) -> Image.Image:
-    """Blacken all pixels outside of the circular region of interest"""
+    """Blacken all pixels outside the circular region of interest"""
     cx = image.size[0] // 2
     cy = image.size[1] // 2
     background = Image.new(image.mode, image.size, 0)
@@ -35,9 +35,9 @@ def blacken_white_pixels(image: Image.Image, radius: float) -> Image.Image:
     return Image.composite(image, background, mask)
 
 
-def preprocess(image: Image.Image, white_treshhold=180):
+def preprocess(image: Image.Image, white_thresh=180) -> Image.Image:
     if image.mode != "L":
         image = image.convert("L")
-    image = blacken_white_pixels(image, _distance_to_white(image, white_treshhold) - 10)
-    image = image.point(lambda p: p * (p < white_treshhold))
+    image = blacken_white_pixels(image, _distance_to_white(image, white_thresh) - 10)
+    image = image.point(lambda p: p * (p < white_thresh))
     return image
