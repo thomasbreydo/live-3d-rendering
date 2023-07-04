@@ -37,7 +37,7 @@ def blacken_white_pixels(image: Image.Image, radius: float) -> Image.Image:
 
 def preprocess(image: Image.Image, white_thresh=180) -> Image.Image:
     if image.mode != "L":
-        image = image.convert("L")
+        image = image.convert("L", (1/3, 1/3, 1/3, 0))
     image = blacken_white_pixels(image, _distance_to_white(image, white_thresh) - 10)
     image = image.point(lambda p: p * (p < white_thresh))
     return image
